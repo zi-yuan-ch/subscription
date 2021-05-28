@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:2442/test?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: cak123456
+
+  dtk:
+    app-key: 609fa27696e7a
+    app-secret: b437ff65108858674da19c0848f2120b
+    app-pid: mm_181180149_2295200044_111328250481
+
+log:
+  level: info
+
+app_dir: .

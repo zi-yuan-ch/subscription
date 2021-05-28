@@ -1,0 +1,43 @@
+server:
+  port: 80
+  #  session-timeout: 1800
+  servlet:
+    context-path: /subscription
+    session:
+      tracking-modes: cookie
+management:
+  context-path: /manage
+  security:
+    enabled: false
+
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: subscription
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  profiles:
+    active: test
+
+  datasource:
+    tomcat:
+      initial-size: 10
+      max-active: 20
+      max-idle: 2
+      min-idle: 2
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: true
+
+  jackson:
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+
+
+#    mapper:
+#      accept_case_insensitive_enums: true
+
+log:
+  level: info
