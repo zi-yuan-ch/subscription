@@ -15,14 +15,14 @@ class DtkServiceTest {
     private lateinit var dtwService: DtkService
     @Test
     fun twd2twd() {
-        val content = "6\uD83D\uDC48 hi:/\uD83D\uDDDDxG5yXVIXjFt\uD83D\uDCB2  吉香居下饭酱暴下饭香菇酱拌饭酱牛肉酱下饭菜拌面酱辣椒酱250g"
+        val content = "0.0 hihi:/₴9ROkX5lUONg\uD83D\uDCB2  LONKEY香水洗衣凝珠小苍兰持久留香洁净浓缩洗衣液家庭5颗单袋装"
         val data = dtwService.twd2twd(content)
         println(data)
     }
 
     @Test
     fun getItemInfo() {
-        val itemId = 611542927430
+        val itemId = 645500259320
         dtwService.getItemInfo(itemId)
     }
 
@@ -36,5 +36,15 @@ class DtkServiceTest {
     @Test
     fun tbGetOrderDetails() {
         dtwService.getOrderDetails()
+    }
+
+    @Test
+    fun genTwd() {
+        val twd = "https://s.click.taobao.com/8c7phmu"
+        val item = dtwService.tbMasterParse(twd) ?: return
+        val itemUrl = item.originUrl ?: return
+        val userId = "chenankang@qq.com"
+        val newTwd = dtwService.genTwd(itemUrl,userId)
+        println(newTwd)
     }
 }

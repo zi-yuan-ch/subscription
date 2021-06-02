@@ -11,7 +11,7 @@ class TbParseContentData {
     var goodsId: String? = null //商品ID
     var originUrl: String? = null //商品链接
     var originType: String? = null //二合一券
-    var commissionRate: Int? = null
+    var commissionRate: Double? = null
     var commissionType: String? = null
     var originInfo: TbParseOriginInfo? = null
 }

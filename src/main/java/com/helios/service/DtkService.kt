@@ -27,6 +27,9 @@ class DtkService {
         DefaultTaobaoClient(taobaoUrl, taobaoAppKey, taobaoAppSecret)
     }
 
+    /**
+     * 淘口令转淘口令
+     */
     fun twd2twd(content: String): DtkTwd2TwdData? {
         val url = DtkUrlConst.TWD_TO_TWD
         val paraMap = TreeMap<String, String>()
@@ -39,16 +42,37 @@ class DtkService {
         return resp.data
     }
 
+    /**
+     * 淘口令万能解析
+     */
     fun tbMasterParse(content: String): TbParseContentData? {
         val url = DtkUrlConst.TB_PARSE
         val paraMap = TreeMap<String, String>()
         paraMap["version"] = "v1.0.0"
         paraMap["appKey"] = appKey
         paraMap["content"] = content
-        val data = ApiClient.sendReq(url, appSecret, paraMap)
+        val data = ApiClient.sendReq(url, appSecret, paraMap) ?: return null
         return Gson().fromJson(data, TbParseContentResp::class.java).data
     }
 
+    /**
+     * 淘口令生成
+     */
+    fun genTwd(itemUrl: String, userId: String): String {
+        val url = DtkUrlConst.CREATE_TAOKOULING
+        val paraMap = TreeMap<String, String>()
+        paraMap["version"] = "v1.0.0"
+        paraMap["appKey"] = appKey
+//        paraMap["text"] = "hello world"
+        paraMap["url"] = itemUrl
+        paraMap["userId"] = userId
+//        paraMap["logo"] = "xxxxx"
+        return ApiClient.sendReq(url, appSecret, paraMap)
+    }
+
+    /**
+     * 商品详情获取
+     */
     fun getItemInfo(itemId: Long): TbkItemInfoGetResponse.NTbkItem? {
         val req = TbkItemInfoGetRequest()
         req.numIids = itemId.toString()
@@ -57,14 +81,17 @@ class DtkService {
         return resp.results.firstOrNull()
     }
 
+    /**
+     * 订单详情获取
+     */
     fun getOrderDetails() {
-        val url = "https://openapi.dataoke.com/api/tb-service/get-order-details"
+        val url = DtkUrlConst.ORDER_DETAILS
         val paraMap = TreeMap<String, String>()
         paraMap["version"] = "v1.0.0"
         paraMap["appKey"] = appKey
-        paraMap["pageSize"] = "2"
-        paraMap["endTime"] = "2021-05-26 12:00:00"
-        paraMap["startTime"] = "2021-05-26 11:00:00"
+//        paraMap["pageSize"] = "2"
+        paraMap["startTime"] = "2021-05-31 23:30:00"
+        paraMap["endTime"] = "2021-05-31 23:33:00"
         val data = ApiClient.sendReq(url, appSecret, paraMap)
         println(data)
     }
