@@ -17,7 +17,7 @@ class DtkTwd2TwdData {
     //针对iOS14版本，增加对应能解析的长口令
     var longTpwd: String? = null
     //佣金比例
-    var maxCommissionRate: String? = null
+    var maxCommissionRate: Double? = null
     //当传入请求参数channelId、specialId、externalId时，该字段展示预估最低佣金率(%)(接联盟通知，官方比价订单佣金调整正式生效时间推迟至7月22日)
     var minCommissionRate: String? = null
     //原始链接

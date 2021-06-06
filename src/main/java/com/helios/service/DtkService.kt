@@ -8,6 +8,7 @@ import com.taobao.api.request.TbkItemInfoGetRequest
 import com.taobao.api.response.TbkItemInfoGetResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -84,16 +85,21 @@ class DtkService {
     /**
      * 订单详情获取
      */
-    fun getOrderDetails() {
+    fun getOrderDetails(start: Date, end: Date) {
+        val df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val url = DtkUrlConst.ORDER_DETAILS
         val paraMap = TreeMap<String, String>()
         paraMap["version"] = "v1.0.0"
         paraMap["appKey"] = appKey
 //        paraMap["pageSize"] = "2"
-        paraMap["startTime"] = "2021-05-31 23:30:00"
-        paraMap["endTime"] = "2021-05-31 23:33:00"
+        paraMap["startTime"] = df.format(start)
+        paraMap["endTime"] = df.format(end)
         val data = ApiClient.sendReq(url, appSecret, paraMap)
         println(data)
+    }
+
+    fun getPrivilegeLink() {
+
     }
 
 }

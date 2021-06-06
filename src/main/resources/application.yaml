@@ -36,8 +36,12 @@ spring:
     property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
 
 
-#    mapper:
-#      accept_case_insensitive_enums: true
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+    multipleResultSetsEnabled: true
+  mapperLocations: classpath:db/*.xml
+
 
 log:
   level: info

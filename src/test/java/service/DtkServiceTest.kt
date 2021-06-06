@@ -1,5 +1,6 @@
 package service
 
+import com.google.gson.Gson
 import com.helios.Application
 import com.helios.service.DtkService
 import org.junit.Test
@@ -17,12 +18,12 @@ class DtkServiceTest {
     fun twd2twd() {
         val content = "0.0 hihi:/₴9ROkX5lUONg\uD83D\uDCB2  LONKEY香水洗衣凝珠小苍兰持久留香洁净浓缩洗衣液家庭5颗单袋装"
         val data = dtwService.twd2twd(content)
-        println(data)
+        println(Gson().toJson(data))
     }
 
     @Test
     fun getItemInfo() {
-        val itemId = 645500259320
+        val itemId = 617105593028
         dtwService.getItemInfo(itemId)
     }
 
@@ -35,7 +36,7 @@ class DtkServiceTest {
 
     @Test
     fun tbGetOrderDetails() {
-        dtwService.getOrderDetails()
+//        dtwService.getOrderDetails()
     }
 
     @Test
